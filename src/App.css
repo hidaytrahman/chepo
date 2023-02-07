@@ -12,12 +12,16 @@
 
 .json-view {
     padding: 1rem;
-    background-color: beige;
-    
+    background-color: #f6fafd;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
 }
 
 .json-view pre {
     font-family: 'Source Code Pro', monospace;
+    overflow-x: auto;
+    font-size: 12px;
+    color: #000;
 }
 
 /* pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; } */
