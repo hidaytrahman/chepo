@@ -1,6 +1,7 @@
 import "./App.css";
 import JsonViewer from "./components/utils/jsonViewer/JsonViewer";
-import { githubUser, todos, users } from "./model/user/users";
+
+import { photosFull, githubUser, photosShort, todos, users } from "./model";
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
 
       <JsonViewer data={users} title="User" />
       <JsonViewer data={githubUser} title="Github user" />
+      <JsonViewer data={photosShort} title="Photos Short" />
+      <JsonViewer data={photosFull} title="Photos Full" />
       <JsonViewer data={todos} title="Todo" />
     </div>
   );
