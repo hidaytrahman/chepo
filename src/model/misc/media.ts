@@ -40,3 +40,8 @@ export const audioPlayer = {
     forward: "Forward",
   },
 };
+
+export const radioPlayer = {
+  title: "FM 107.5",
+  location: "Delhi",
+};

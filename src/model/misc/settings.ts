@@ -1,4 +1,4 @@
-type slideSettingsType = {
+export type slideSettingsType = {
   interval: number;
   keyboard: boolean;
   autoplay: boolean;
