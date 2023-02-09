@@ -45,7 +45,7 @@ export default function Landing() {
             <img
               className="logo"
               loading="lazy"
-              src={`/assets/logo.png`}
+              src={`/images/logo.png`}
               alt="chepo logo"
             />
           </div>
