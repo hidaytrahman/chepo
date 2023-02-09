@@ -9,7 +9,7 @@
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "tsc && vite build && vite preview"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.10",

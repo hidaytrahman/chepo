@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { List, X } from "phosphor-react";
 import "./Landing.css";
-
+const logo = "/chepo/images/logo.png";
 const navigation = [
   { name: "Product", href: "#" },
   { name: "Features", href: "#" },
@@ -42,12 +42,7 @@ export default function Landing() {
       <div className="px-6 pt-6 lg:px-8">
         <nav className="flex items-center justify-between" aria-label="Global">
           <div className="flex lg:flex-1">
-            <img
-              className="logo"
-              loading="lazy"
-              src={`/images/logo.png`}
-              alt="chepo logo"
-            />
+            <img className="logo" loading="lazy" src={logo} alt="chepo logo" />
           </div>
           <div className="flex lg:hidden">
             <button
@@ -92,7 +87,7 @@ export default function Landing() {
                 <img
                   className="logo"
                   loading="lazy"
-                  src={`/assets/logo.png`}
+                  src={logo}
                   alt="chepo logo"
                 />
               </a>
