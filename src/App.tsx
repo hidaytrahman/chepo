@@ -3,8 +3,6 @@ import Header from "./components/utils/header/Header";
 import JsonViewer from "./components/utils/jsonViewer/JsonViewer";
 import { photosFull, githubUser, photosShort, todos, users } from "./model";
 import { videoPlayer } from "./model/misc";
-// import img from "/chepo-logo.png";
-// const hamhu = new URL('./chepo-logo.png"', import.meta.url).href;
 function App() {
   return (
     <>

@@ -1,4 +1,11 @@
 .header {
-    background-color: azure;
-    padding: 2rem;
+  background-color: azure;
+  padding: 2rem;
+}
+
+.header img {
+  max-width: 150px;
+}
+
+.highlight-para {
 }

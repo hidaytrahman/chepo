@@ -2,10 +2,21 @@ import "./header.css";
 const Header = () => {
   return (
     <header className="header">
-      <h1>Chepo</h1>
-      {/* <div>
-    <img src={hamhu} />
-  </div> */}
+      <img
+        loading="lazy"
+        src={`/assets/logo.png`}
+        alt="chepo logo"
+        className="responsive"
+      />
+      <p>
+        Chepo is the easiest way to provide mock data and modal for your
+        project,
+        <br />
+        <div className="highlight-para">
+          Just copy and paste it into your project. You can use the generated
+          data without any additional effort.
+        </div>
+      </p>
     </header>
   );
 };
