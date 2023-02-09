@@ -1,3 +1,5 @@
+import { CopyButton } from "../copy/Copy";
+import "./JsonViewer.css";
 type JsonViewerPropsType = {
   data: [] | {};
   title: string;
@@ -5,15 +7,16 @@ type JsonViewerPropsType = {
 
 const JsonViewer = ({ data, title }: JsonViewerPropsType) => {
   return (
-    <div className="json-view-wrapper">
+    <section className="json-view-wrapper">
       <h3 className="title">{title}</h3>
 
-      <div className="json-view">
+      <article className="json-view">
+        <header className="json-view__header">
+          <CopyButton content={data} />
+        </header>
         <pre>{JSON.stringify(data, undefined, 4)}</pre>
-      </div>
-
-      <footer></footer>
-    </div>
+      </article>
+    </section>
   );
 };
 
