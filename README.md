@@ -1,2 +1,11 @@
 # chepo
-`chepo` : A developer friend
+
+`chepo` : One Click Away
+
+## Mock Data
+
+## Model
+
+## API
+
+Coming Soon
