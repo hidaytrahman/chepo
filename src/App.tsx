@@ -1,12 +1,16 @@
 import "./App.css";
 import Header from "./components/utils/header/Header";
 import JsonViewer from "./components/utils/jsonViewer/JsonViewer";
+import Example from "./components/utils/themes/HeroSections";
+import Landing from "./container/landing/Landing";
 import { photosFull, githubUser, photosShort, todos, users } from "./model";
 import { videoPlayer } from "./model/misc";
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+
+      <Landing />
 
       <div className="App">
         <JsonViewer data={videoPlayer} title="videoPlayer" />

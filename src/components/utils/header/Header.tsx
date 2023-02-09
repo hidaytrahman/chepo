@@ -2,6 +2,7 @@ import "./header.css";
 const Header = () => {
   return (
     <header className="header">
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <img
         loading="lazy"
         src={`/assets/logo.png`}
