@@ -1,13 +1,13 @@
-/* This example requires Tailwind CSS v3.0+ */
 import { useState } from "react";
-// import { Dialog } from '@headlessui/react'
-// import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Dialog } from "@headlessui/react";
+import { List, X } from "phosphor-react";
+import "./Landing.css";
 
 const navigation = [
   { name: "Product", href: "#" },
   { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  //   { name: "Marketplace", href: "#" },
+  //   { name: "Company", href: "#" },
 ];
 
 export default function Landing() {
@@ -44,14 +44,12 @@ export default function Landing() {
       <div className="px-6 pt-6 lg:px-8">
         <nav className="flex items-center justify-between" aria-label="Global">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
+            <img
+              className="logo"
+              loading="lazy"
+              src={`/assets/logo.png`}
+              alt="chepo logo"
+            />
           </div>
           <div className="flex lg:hidden">
             <button
@@ -60,35 +58,45 @@ export default function Landing() {
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
-              {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
+              <List className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                {item.name}
-              </a>
-            ))}
+            {false &&
+              navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  {item.name}
+                </a>
+              ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a
               href="#"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
-          </div>
+          </div> */}
         </nav>
-        {/* <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-          <Dialog.Panel focus="true" className="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
+        <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+          <Dialog.Panel
+            //   @ts-ignore
+            focus="true"
+            className="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden"
+          >
             <div className="flex items-center justify-between">
               <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img className="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                <span className="sr-only">Chepo</span>
+                <img
+                  className="logo"
+                  loading="lazy"
+                  src={`/assets/logo.png`}
+                  alt="chepo logo"
+                />
               </a>
               <button
                 type="button"
@@ -96,7 +104,7 @@ export default function Landing() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                <X className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
             <div className="mt-6 flow-root">
@@ -112,18 +120,18 @@ export default function Landing() {
                     </a>
                   ))}
                 </div>
-                <div className="py-6">
+                {/* <div className="py-6">
                   <a
                     href="#"
                     className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10"
                   >
                     Log in
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </Dialog.Panel>
-        </Dialog> */}
+        </Dialog>
       </div>
       <main>
         <div className="relative px-6 lg:px-8">
@@ -148,18 +156,18 @@ export default function Landing() {
                 generated data without any additional effort.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a
+                {/* <a
                   href="#"
                   className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Get started
-                </a>
-                <a
+                </a> */}
+                {/* <a
                   href="#"
                   className="text-base font-semibold leading-7 text-gray-900"
                 >
                   Learn more <span aria-hidden="true">→</span>
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
