@@ -11,6 +11,9 @@ const navigation = [
 export default function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const [search, setSearch] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -192,6 +195,20 @@ export default function Landing() {
           </div>
         </div>
       </main>
+
+      <div>
+        <label htmlFor="search">Search Data</label>
+        <input
+          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          type="text"
+          placeholder="Search"
+          id="search"
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            console.log({ searchTerm });
+          }}
+        />
+      </div>
     </div>
   );
 }
