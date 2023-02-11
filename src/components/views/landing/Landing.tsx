@@ -2,7 +2,12 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { List, X } from "phosphor-react";
 import "./Landing.css";
+
+import JsonViewer from "../../utils/jsonViewer/JsonViewer";
+import { modal } from "../../../model";
+
 const logo = "/chepo/images/logo.png";
+
 const navigation = [
   { name: "Product", href: "#" },
   { name: "Features", href: "#" },
@@ -10,6 +15,8 @@ const navigation = [
 
 export default function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   return (
     <div className="isolate bg-white">
@@ -192,6 +199,45 @@ export default function Landing() {
           </div>
         </div>
       </main>
+
+      <div>
+        <label htmlFor="search">Search Data</label>
+        <input
+          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          type="text"
+          placeholder="Search"
+          list="mockdata"
+          id="search"
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+        <datalist id="mockdata">
+          <option value="todos" />
+          <option value="videoPlayer" />
+          <option value="audioPlayer" />
+          <option value="slideSettings" />
+          <option value="languages" />
+          <option value="photosFull" />
+          <option value="photosShort" />
+          <option value="githubUser" />
+          <option value="users" />
+        </datalist>
+      </div>
+
+      {modal[searchTerm] && (
+        <JsonViewer data={modal[searchTerm]} title={searchTerm} />
+      )}
+
+      <hr />
+
+      <JsonViewer data={modal.videoPlayer} title="videoPlayer" />
+      {/* Render dynamically */}
+
+      {/* <JsonViewer data={users} title="User" /> */}
+      {/* <JsonViewer data={githubUser} title="Github user" /> */}
+      {/* <JsonViewer data={photosShort} title="Photos Short" /> */}
+      {/* <JsonViewer data={photosFull} title="Photos Full" /> */}
     </div>
   );
 }
