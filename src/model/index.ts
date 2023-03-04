@@ -1,4 +1,11 @@
-import { videoPlayer, audioPlayer, slideSettings, languages } from "./misc";
+import {
+  videoPlayer,
+  audioPlayer,
+  slideSettings,
+  languages,
+  months,
+  monthsShort,
+} from "./misc";
 import { photosFull, photosShort, todos, users } from "./user/users";
 
 import { githubUser } from "./user/users";
@@ -13,4 +20,6 @@ export const modal: any = {
   audioPlayer,
   slideSettings,
   languages,
+  months,
+  monthsShort,
 };
