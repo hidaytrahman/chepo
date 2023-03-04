@@ -222,6 +222,8 @@ export default function Landing() {
           <option value="photosShort" />
           <option value="githubUser" />
           <option value="users" />
+          <option value="months" />
+          <option value="monthsShort" />
         </datalist>
       </div>
 
