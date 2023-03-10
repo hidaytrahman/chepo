@@ -5,6 +5,8 @@ import {
   languages,
   months,
   monthsShort,
+  week,
+  weekShort,
 } from "./misc";
 import { photosFull, photosShort, todos, users } from "./user/users";
 
@@ -22,4 +24,6 @@ export const modal: any = {
   languages,
   months,
   monthsShort,
+  week,
+  weekShort,
 };

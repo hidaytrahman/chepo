@@ -224,6 +224,8 @@ export default function Landing() {
           <option value="users" />
           <option value="months" />
           <option value="monthsShort" />
+          <option value="week" />
+          <option value="weekShort" />
         </datalist>
       </div>
 
