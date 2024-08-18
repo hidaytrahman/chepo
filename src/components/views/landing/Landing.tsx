@@ -220,6 +220,7 @@ export default function Landing() {
 						<option value='videoPlayer' />
 						<option value='audioPlayer' />
 						<option value='products' />
+						<option value='productCategories' />
 						<option value='slideSettings' />
 						<option value='languages' />
 						<option value='photosFull' />
