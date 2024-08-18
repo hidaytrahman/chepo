@@ -51,7 +51,7 @@ export default function Landing() {
 					<div className='flex lg:flex-1'>
 						<img className='logo' loading='lazy' src={logo} alt='chepo logo' />
 					</div>
-					<div className='flex lg:hidden'>
+					{/* <div className='flex lg:hidden'>
 						<button
 							type='button'
 							className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700'
@@ -60,8 +60,8 @@ export default function Landing() {
 							<span className='sr-only'>Open main menu</span>
 							<List className='h-6 w-6' aria-hidden='true' />
 						</button>
-					</div>
-					<div className='hidden lg:flex lg:gap-x-12'>
+					</div> */}
+					{/* <div className='hidden lg:flex lg:gap-x-12'>
 						{false &&
 							navigation.map((item) => (
 								<a
@@ -72,7 +72,7 @@ export default function Landing() {
 									{item.name}
 								</a>
 							))}
-					</div>
+					</div> */}
 					{/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a
               href="#"
@@ -219,6 +219,7 @@ export default function Landing() {
 						<option value='todos' />
 						<option value='videoPlayer' />
 						<option value='audioPlayer' />
+						<option value='products' />
 						<option value='slideSettings' />
 						<option value='languages' />
 						<option value='photosFull' />
