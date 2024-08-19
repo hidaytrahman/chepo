@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
-import { List, X } from 'phosphor-react';
+import { X } from 'phosphor-react';
 import './Landing.css';
 
 import JsonViewer from '../../utils/jsonViewer/JsonViewer';
 import { modal } from '../../../model';
+import { dataList } from '../../../utils/search.utils';
+import DataEntity from '../../utils/DataEntity';
 
 const logo = '/chepo/images/logo.png';
 
@@ -165,6 +167,11 @@ export default function Landing() {
 								additional effort.
 							</p>
 							<div className='mt-10 flex items-center justify-center gap-x-6'>
+								<div className='my-4 '>
+									<div className='text-gray-400 text-lg pb-6'>Examples</div>
+
+									<DataEntity setColor={setSearchTerm} />
+								</div>
 								{/* <a
                   href="#"
                   className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -223,15 +230,27 @@ export default function Landing() {
 					<input
 						className='block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 						type='text'
-						placeholder='Search'
+						placeholder='e.g user, months, products'
 						list='mockdata'
 						id='search'
 						onChange={(e) => {
 							setSearchTerm(e.target.value);
 						}}
 					/>
+
+					<div className='my-4'>
+						<span className='my-2 inline-block'>or choose from:</span>
+						<br />
+						<DataEntity setColor={setSearchTerm} />
+					</div>
+
+					<hr />
+
 					<datalist id='mockdata'>
-						<option value='todos' />
+						{dataList.map((data) => (
+							<option key={data.id} value={data.name} />
+						))}
+						{/* <option value='todos' />
 						<option value='videoPlayer' />
 						<option value='audioPlayer' />
 						<option value='products' />
@@ -245,19 +264,22 @@ export default function Landing() {
 						<option value='months' />
 						<option value='monthsShort' />
 						<option value='week' />
-						<option value='weekShort' />
+						<option value='weekShort' /> */}
 					</datalist>
 				</div>
 
-				{modal[searchTerm] && <JsonViewer data={modal[searchTerm]} title={searchTerm} />}
+				{modal[searchTerm] ? (
+					<JsonViewer data={modal[searchTerm]} title={searchTerm} />
+				) : (
+					<JsonViewer data={modal.videoPlayer} title='Example: videoPlayer' />
+				)}
 
 				<hr />
 
-				<JsonViewer data={modal.videoPlayer} title='videoPlayer' />
 				{/* Render dynamically */}
 
 				{/* <JsonViewer data={users} title="User" /> */}
-				{/* <JsonViewer data={githubUser} title="Github user" /> */}
+				{/* <JsonViewer data={githubUser} title='Github user' /> */}
 				{/* <JsonViewer data={photosShort} title="Photos Short" /> */}
 				{/* <JsonViewer data={photosFull} title="Photos Full" /> */}
 			</section>
