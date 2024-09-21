@@ -8,6 +8,7 @@ import {
 	week,
 	weekShort,
 	countries,
+	cart,
 } from './misc';
 import { photosFull, photosShort, todos, users } from './user/users';
 
@@ -31,4 +32,5 @@ export const modal: any = {
 	week,
 	weekShort,
 	countries,
+	cart,
 };

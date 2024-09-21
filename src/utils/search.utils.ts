@@ -1,5 +1,10 @@
 export const dataList = [
 	{
+		id: 2107,
+		title: 'Product Cart',
+		name: 'cart',
+	},
+	{
 		id: 1,
 		title: 'Video Player',
 		name: 'videoPlayer',

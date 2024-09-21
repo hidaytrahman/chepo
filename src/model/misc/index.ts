@@ -4,3 +4,4 @@ export { languages } from './languages';
 export { months, monthsShort } from './months';
 export { week, weekShort } from './week';
 export { countries } from './countries';
+export { cart } from './shopping';
