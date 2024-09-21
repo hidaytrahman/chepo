@@ -1,6 +1,16 @@
 export const dataList = [
 	{
-		id: 2107,
+		id: 21071207,
+		title: 'Marketing Data',
+		name: 'marketing',
+	},
+	{
+		id: 21071203,
+		title: 'Bank Accounts',
+		name: 'accounts',
+	},
+	{
+		id: 21071158,
 		title: 'Product Cart',
 		name: 'cart',
 	},
