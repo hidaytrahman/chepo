@@ -250,21 +250,6 @@ export default function Landing() {
 						{dataList.map((data) => (
 							<option key={data.id} value={data.name} />
 						))}
-						{/* <option value='todos' />
-						<option value='videoPlayer' />
-						<option value='audioPlayer' />
-						<option value='products' />
-						<option value='productCategories' />
-						<option value='slideSettings' />
-						<option value='languages' />
-						<option value='photosFull' />
-						<option value='photosShort' />
-						<option value='githubUser' />
-						<option value='users' />
-						<option value='months' />
-						<option value='monthsShort' />
-						<option value='week' />
-						<option value='weekShort' /> */}
 					</datalist>
 				</div>
 
