@@ -8,19 +8,20 @@
 }
 
 .json-view {
-	padding: 1rem;
 	background-color: #f6fafd;
 	border: 1px solid #e2e2e2;
-	border-radius: 5px;
+	border-radius: 0;
 	position: relative;
 	box-shadow: -1px 2px 8px -2px #ccc;
 }
 
+.json-view .hljs.json {
+	border-radius: 5px;
+}
+
 .json-view pre {
-	font-family: 'Source Code Pro', monospace;
 	overflow-x: auto;
 	font-size: 12px;
-	color: #000;
 }
 
 .json-view__header {
@@ -31,21 +32,4 @@
 
 .json-view__header button {
 	padding: 2px 4px;
-}
-
-/* pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; } */
-.string {
-	color: green;
-}
-.number {
-	color: darkorange;
-}
-.boolean {
-	color: blue;
-}
-.null {
-	color: magenta;
-}
-.key {
-	color: red;
 }
