@@ -10,6 +10,7 @@ import Highlight from 'react-highlight';
 // import 'highlight.js/styles/atom-one-dark-reasonable.css';
 // import 'highlight.js/styles/vs2015.css';
 import 'highlight.js/styles/agate.css';
+import DataSample from '../../sample/DataSample';
 
 type JsonViewerPropsType = {
 	data: [] | {};
@@ -34,6 +35,8 @@ const JsonViewer = ({ data, title }: JsonViewerPropsType) => {
 					<code className='language-json'>{JSON.stringify(data, undefined, 4)} </code>
 				</pre> */}
 			</article>
+
+			<DataSample data={data} />
 		</section>
 	);
 };
