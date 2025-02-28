@@ -1,7 +1,7 @@
 {
 	"name": "chepo",
 	"private": true,
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"type": "module",
 	"author": {
 		"name": "Hidayt Rahman",
@@ -17,7 +17,10 @@
 		"preview": "tsc && vite build && vite preview"
 	},
 	"dependencies": {
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.0",
 		"@headlessui/react": "^1.7.10",
+		"@mui/material": "^6.4.6",
 		"phosphor-react": "^1.4.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

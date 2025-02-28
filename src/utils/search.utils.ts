@@ -93,6 +93,13 @@ export const dataList = [
 		id: 16,
 		title: 'Country List',
 		name: 'countries',
+		isNew: true,
+	},
+	{
+		id: 17,
+		title: 'Sample Layout',
+		name: 'layout',
+		isNew: true,
 	},
 ];
 

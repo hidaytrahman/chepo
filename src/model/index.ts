@@ -16,6 +16,7 @@ import { photosFull, photosShort, todos, users } from './user/users';
 
 import { githubUser } from './user/users';
 import { productCategories, products } from './misc/products';
+import { layout } from './ui';
 
 export const modal: any = {
 	photosFull,
@@ -37,4 +38,6 @@ export const modal: any = {
 	cart,
 	accounts,
 	marketing,
+
+	layout,
 };
