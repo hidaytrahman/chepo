@@ -3,7 +3,7 @@ import { Dialog } from '@headlessui/react';
 import { X } from 'phosphor-react';
 import './Landing.css';
 import HeaderPanel from '../../features/HeaderPanel/HeaderPanel';
-import SearchPanel from '../../features/ModalPanel/ModalPanel';
+import SearchPanel from '../../features/SearchPanel/SearchPanel';
 
 const logo = '/chepo/images/logo.png';
 
