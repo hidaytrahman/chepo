@@ -1,18 +1,29 @@
-import { dataList, highlightColors } from '../../utils/search.utils';
+import { Badge, Typography } from '@mui/material';
+import { dataList } from '../../utils/search.utils';
+import { getRandomColor } from '../../utils';
 
-function DataEntity({ setColor }: any) {
+function DataEntity({ setColor, applyColor }: any) {
 	return (
 		<div className='flex flex-wrap gap-2'>
 			{dataList.map((data, index) => (
-				<span
-					onClick={() => setColor(data.name)}
-					key={data.name}
-					className={`cursor-pointer
-							 bg-gray-100 text-gray-800  dark:bg-gray-700 dark:text-gray-300
-							bg-${highlightColors[index]}-100 text-${highlightColors[index]}-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-${highlightColors[index]}-700 dark:text-${highlightColors[index]}-300`}
-				>
-					{data.name}
-				</span>
+				<Badge color='primary' badgeContent={data.isNew ? 'New' : 0}>
+					<Typography
+						component={'span'}
+						onClick={() => setColor(data.name)}
+						key={data.name}
+						p={0.5}
+						px={1}
+						borderRadius={1}
+						textTransform={'capitalize'}
+						fontSize={'small'}
+						style={{
+							cursor: 'pointer',
+							backgroundColor: applyColor ? getRandomColor() : 'rgb(240 240 240)',
+						}}
+					>
+						{data.name}
+					</Typography>
+				</Badge>
 			))}
 		</div>
 	);
