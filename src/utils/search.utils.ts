@@ -94,6 +94,11 @@ export const dataList = [
 		title: 'Country List',
 		name: 'countries',
 	},
+	{
+		id: 17,
+		title: 'Sample Layout',
+		name: 'layout',
+	},
 ];
 
 export const highlightColors = ['gray', 'blue', 'red', 'green', 'yellow', 'indigo', 'purple', 'pink', 'magenta'];
