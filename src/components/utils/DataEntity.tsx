@@ -5,8 +5,8 @@ import { getRandomColor } from '../../utils';
 function DataEntity({ setColor, applyColor }: any) {
 	return (
 		<div className='flex flex-wrap gap-2'>
-			{dataList.map((data, index) => (
-				<Badge color='primary' badgeContent={data.isNew ? 'New' : 0} key={index}>
+			{dataList.map((data) => (
+				<Badge color='primary' badgeContent={data.isNew ? 'New' : 0} key={data.id}>
 					<Typography
 						component={'span'}
 						onClick={() => setColor(data.name)}
