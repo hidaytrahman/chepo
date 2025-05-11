@@ -1,4 +1,4 @@
-import { syntaxHighlight } from './index';
+import { getRandomColor, syntaxHighlight } from './index';
 
 // Test suite for the syntaxHighlight function
 
@@ -119,5 +119,52 @@ describe('syntaxHighlight', () => {
 		expect(result).toContain('<span class="null">null</span>');
 		expect(result).toContain('<span class="string">"two"</span>');
 		expect(result).toContain('<span class="boolean">true</span>');
+	});
+
+	it('getRandomColor should return a string starting with # and 6 hex digits', () => {
+		const color = getRandomColor();
+		expect(typeof color).toBe('string');
+		expect(color).toMatch(/^#[0-9a-fA-F]{6}$/);
+	});
+
+	it('getRandomColor should return different values on multiple calls', () => {
+		const colors = new Set();
+		for (let i = 0; i < 10; i++) {
+			colors.add(getRandomColor());
+		}
+		// It's possible (but extremely unlikely) to get all the same color by chance
+		expect(colors.size).toBeGreaterThan(1);
+	});
+
+	describe('output', () => {
+		let appendChildSpy: jest.SpyInstance;
+		let createElementSpy: jest.SpyInstance;
+		let preElement: HTMLElement;
+
+		beforeEach(() => {
+			preElement = document.createElement('pre');
+			createElementSpy = jest.spyOn(document, 'createElement').mockImplementation((tagName: string) => {
+				if (tagName === 'pre') return preElement;
+				return document.createElement(tagName);
+			});
+			appendChildSpy = jest.spyOn(document.body, 'appendChild').mockImplementation((el: Node) => el);
+		});
+
+		afterEach(() => {
+			jest.restoreAllMocks();
+		});
+
+		it('should append a pre element to the document body', () => {
+			const input = 'Hello, World!';
+			require('./index').output(input);
+			expect(createElementSpy).toHaveBeenCalledWith('pre');
+			expect(appendChildSpy).toHaveBeenCalledWith(preElement);
+		});
+
+		it('should set the innerHTML of the pre element to the input', () => {
+			const input = '<b>bold</b>';
+			require('./index').output(input);
+			expect(preElement.innerHTML).toBe(input);
+		});
 	});
 });

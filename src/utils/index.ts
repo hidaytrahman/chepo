@@ -1,3 +1,8 @@
+/**
+ * Appends a new `<pre>` element to the document body and sets its inner HTML to the provided input.
+ *
+ * @param inp - The content to display inside the newly created `<pre>` element. Can be of any type.
+ */
 export function output(inp: any) {
 	document.body.appendChild(document.createElement('pre')).innerHTML = inp;
 }
@@ -30,13 +35,15 @@ export function syntaxHighlight(json: any) {
 		});
 }
 
-export var obj = {
+export const obj = {
 	a: 1,
 	b: 'foo',
 	c: [false, 'false', null, 'null', { d: { e: 1.3e5, f: '1.3e5' } }],
 };
-var str = JSON.stringify(obj, undefined, 4);
 
+/**
+ * Generates a random hexadecimal color code.
+ *
+ * @returns {string} A string representing a random color in hexadecimal format (e.g., "#a3e12f").
+ */
 export const getRandomColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16);
-// output(str);
-// output(syntaxHighlight(str));
