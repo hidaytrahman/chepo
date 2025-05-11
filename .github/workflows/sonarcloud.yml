@@ -27,7 +27,7 @@ jobs:
               run: yarn build
 
             - name: Run tests and generate coverage
-              run: yarn test --coverage
+              run: yarn test:coverage
 
             - name: SonarCloud Scan
               uses: SonarSource/sonarcloud-github-action@v2
