@@ -6,7 +6,7 @@ function DataEntity({ setColor, applyColor }: any) {
 	return (
 		<div className='flex flex-wrap gap-2'>
 			{dataList.map((data, index) => (
-				<Badge color='primary' badgeContent={data.isNew ? 'New' : 0}>
+				<Badge color='primary' badgeContent={data.isNew ? 'New' : 0} key={index}>
 					<Typography
 						component={'span'}
 						onClick={() => setColor(data.name)}

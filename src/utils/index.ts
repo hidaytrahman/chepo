@@ -2,6 +2,14 @@ export function output(inp: any) {
 	document.body.appendChild(document.createElement('pre')).innerHTML = inp;
 }
 
+// This function is used to highlight JSON syntax in a string. It replaces special characters with HTML entities and then applies syntax highlighting to the JSON string.
+// It uses regular expressions to match different JSON elements (strings, keys, booleans, null, and numbers) and wraps them in span tags with appropriate classes for styling.
+// The function returns the highlighted JSON string, which can be used for display purposes in a web application.
+// The function is useful for rendering JSON data in a more readable format, especially in web applications where you want to display JSON data with syntax highlighting.
+// It can be used in various scenarios, such as displaying API responses, configuration files, or any other JSON data in a user-friendly format.
+// The function is designed to be used in a web environment, as it manipulates the DOM by appending the highlighted JSON string to the document body.
+// It is important to note that this function does not modify the original JSON data; it only formats it for display purposes.
+// The function uses a regular expression to match different JSON elements and applies syntax highlighting by wrapping them in span tags with appropriate classes.
 export function syntaxHighlight(json: any) {
 	json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	return json.replace(
