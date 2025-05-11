@@ -12,24 +12,22 @@ export function output(inp: any) {
 // The function uses a regular expression to match different JSON elements and applies syntax highlighting by wrapping them in span tags with appropriate classes.
 export function syntaxHighlight(json: any) {
 	json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	return json.replace(
-		/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-		function (match: any) {
-			var cls = 'number';
-			if (/^"/.test(match)) {
-				if (/:$/.test(match)) {
-					cls = 'key';
-				} else {
-					cls = 'string';
-				}
-			} else if (/true|false/.test(match)) {
-				cls = 'boolean';
-			} else if (/null/.test(match)) {
-				cls = 'null';
-			}
+	const stringOrKeyRegex = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?)/g;
+	const booleanOrNullRegex = /\b(true|false|null)\b/g;
+	const numberRegex = /-?\d+(\.\d*)?([eE][+\-]?\d+)?/g;
+
+	return json
+		.replace(stringOrKeyRegex, function (match: any) {
+			let cls = /:$/.test(match) ? 'key' : 'string';
 			return '<span class="' + cls + '">' + match + '</span>';
-		}
-	);
+		})
+		.replace(booleanOrNullRegex, function (match: any) {
+			let cls = match === 'null' ? 'null' : 'boolean';
+			return '<span class="' + cls + '">' + match + '</span>';
+		})
+		.replace(numberRegex, function (match: any) {
+			return '<span class="number">' + match + '</span>';
+		});
 }
 
 export var obj = {
