@@ -9,21 +9,19 @@ import { AppContext, appReducer, initialAppState } from "./context";
 import { videoPlayer } from "./model/misc";
 
 function App() {
-  const [state, dispatch] = useReducer<any>(appReducer, initialAppState);
+  const [state, dispatch] = useReducer(appReducer, initialAppState);
   return (
-    <>
-      {/* Need to configure router */}
-      {/* <Router>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/features" element={<Landing />} />
-        </Routes>
-      </Router> */}
-
+    <AppContext.Provider
+      value={{
+        ...state,
+        setSearchingState: (value: boolean) =>
+          dispatch({ type: "SEARCHING", payload: value }),
+      }}
+    >
       <div className="App">
         <Landing />
       </div>
-    </>
+    </AppContext.Provider>
   );
 }
 

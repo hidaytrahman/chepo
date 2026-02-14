@@ -1,11 +1,11 @@
 import { Badge, Typography } from '@mui/material';
-import { dataList } from '../../utils/search.utils';
+import { getDataCatalog } from '../../utils/search.utils';
 import { getRandomColor } from '../../utils';
 
-function DataEntity({ setColor, applyColor }: any) {
+function DataEntity({ setColor, applyColor }: { setColor: (name: string) => void; applyColor?: boolean }) {
 	return (
 		<div className='flex flex-wrap gap-2'>
-			{dataList.map((data) => (
+			{getDataCatalog().map((data) => (
 				<Badge color='primary' badgeContent={data.isNew ? 'New' : 0} key={data.id}>
 					<Typography
 						component={'span'}

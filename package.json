@@ -17,7 +17,9 @@
 		"preview": "tsc && vite build && vite preview",
 		"test": "jest",
 		"test:watch": "jest --watch",
-		"test:coverage": "jest --coverage"
+		"test:coverage": "jest --coverage",
+		"sonar": "sonar-scanner",
+		"sonar:debug": "sonar-scanner -X"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.14.0",

@@ -1,9 +1,12 @@
-import { modal } from '../../../model';
-import { dataList } from '../../../utils/search.utils';
+import { getMockDataKeys, getMockDataByKey, searchAllMockData } from '../../../utils/search.utils';
 import DataEntity from '../../utils/DataEntity';
 import JsonViewer from '../../utils/jsonViewer/JsonViewer';
 
-function SearchPanel({ searchTerm, setSearchTerm }: any) {
+function SearchPanel({ searchTerm, setSearchTerm }: { searchTerm: string; setSearchTerm: (value: string) => void }) {
+	const matches = searchAllMockData(searchTerm);
+	const exact = getMockDataKeys().find((k) => k.toLowerCase() === searchTerm.toLowerCase());
+	const selectedKey = exact || matches[0];
+	const data = selectedKey ? getMockDataByKey(selectedKey) : getMockDataByKey('videoPlayer');
 	return (
 		<section
 			style={{
@@ -36,17 +39,19 @@ function SearchPanel({ searchTerm, setSearchTerm }: any) {
 				<hr />
 
 				<datalist id='mockdata'>
-					{dataList.map((data) => (
-						<option key={data.id} value={data.name} />
+					{getMockDataKeys().map((name) => (
+						<option key={name} value={name} />
 					))}
 				</datalist>
 			</div>
 
-			{modal[searchTerm] ? (
-				<JsonViewer data={modal[searchTerm]} title={searchTerm} />
-			) : (
-				<JsonViewer data={modal.videoPlayer} title='Example: videoPlayer' />
-			)}
+			{/* Primary selected or first match */}
+			<JsonViewer data={data} title={selectedKey || 'Example: videoPlayer'} />
+
+			{/* Additional matched entries */}
+			{matches.slice(1).map((name) => (
+				<JsonViewer key={name} data={getMockDataByKey(name)} title={name} />
+			))}
 
 			<hr />
 
