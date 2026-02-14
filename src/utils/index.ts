@@ -46,4 +46,8 @@ export const obj = {
  *
  * @returns {string} A string representing a random color in hexadecimal format (e.g., "#a3e12f").
  */
-export const getRandomColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16);
+export const getRandomColor = () =>
+	'#' +
+	Math.floor(Math.random() * 0xffffff)
+		.toString(16)
+		.padStart(6, '0');
