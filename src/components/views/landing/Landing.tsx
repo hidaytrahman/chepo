@@ -4,6 +4,7 @@ import { X } from 'phosphor-react';
 import './Landing.css';
 import HeaderPanel from '../../features/HeaderPanel/HeaderPanel';
 import SearchPanel from '../../features/SearchPanel/SearchPanel';
+import { getInitialModelFromUrl } from '../../../hooks/useModelUrl';
 
 const logo = '/chepo/images/logo.png';
 
@@ -15,8 +16,9 @@ const navigation = [
 export default function Landing() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-	const [searchTerm, setSearchTerm] = useState<string>('');
-	const [selectedKey, setSelectedKey] = useState<string>('');
+	const initialModel = getInitialModelFromUrl();
+	const [searchTerm, setSearchTerm] = useState<string>(initialModel);
+	const [selectedKey, setSelectedKey] = useState<string>(initialModel);
 
 	return (
 		<div className='isolate bg-white'>

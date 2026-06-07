@@ -1,5 +1,9 @@
 export type MockCategory = 'user' | 'media' | 'commerce' | 'locale' | 'finance' | 'marketing' | 'ui';
 
+export type DatasetSource =
+	| { type: 'module' }
+	| { type: 'json'; file: string };
+
 export type MockDatasetMeta = {
 	key: string;
 	title: string;
@@ -8,10 +12,20 @@ export type MockDatasetMeta = {
 	tags: string[];
 	isNew?: boolean;
 	featured?: boolean;
+	source: DatasetSource;
 };
 
 export type MockDatasetEntry = MockDatasetMeta & {
-	data: unknown;
+	load: () => Promise<unknown>;
+};
+
+export type ManifestDataset = Omit<MockDatasetMeta, 'source'> & {
+	source: DatasetSource;
+};
+
+export type Manifest = {
+	_readme?: string;
+	datasets: ManifestDataset[];
 };
 
 export const CATEGORY_LABELS: Record<MockCategory, string> = {

@@ -1,6 +1,5 @@
 import {
 	getMockDataKeys,
-	getMockDataByKey,
 	searchMockData,
 	getDataCatalog,
 	searchAllMockData,
@@ -16,12 +15,7 @@ describe('search.utils', () => {
 		expect(Array.isArray(keys)).toBe(true);
 		expect(keys.length).toBeGreaterThan(0);
 		expect(keys).toContain('videoPlayer');
-	});
-
-	test('getMockDataByKey resolves case-insensitive key', () => {
-		const data = getMockDataByKey('VideoPlayer');
-		expect(data).toBeDefined();
-		expect(typeof data).toBe('object');
+		expect(keys).toContain('githubRepo');
 	});
 
 	test('searchMockData returns relevant matches', () => {
@@ -55,12 +49,18 @@ describe('search.utils', () => {
 		expect(catalog[0]).toHaveProperty('title');
 		expect(catalog[0]).toHaveProperty('category');
 		expect(catalog[0]).toHaveProperty('tags');
+		expect(catalog[0]).toHaveProperty('source');
 	});
 
 	test('searchCatalog filters by category label', () => {
 		const matches = searchCatalog('commerce');
 		expect(matches.length).toBeGreaterThan(0);
 		expect(matches.every((m) => m.category === 'commerce' || m.tags.length > 0)).toBe(true);
+	});
+
+	test('searchCatalog finds JSON datasets by tag', () => {
+		const matches = searchCatalog('json');
+		expect(matches.some((m) => m.key === 'githubRepo')).toBe(true);
 	});
 
 	test('getFeaturedDatasets returns only featured items', () => {

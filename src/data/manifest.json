@@ -1,0 +1,206 @@
+{
+	"_readme": "To add a JSON dataset: 1) place a .json file in datasets/, 2) register it in model/jsonLoaders.ts, 3) append an entry here with source.type json. For TypeScript datasets, add a loader in model/loaders.ts and set source.type module.",
+	"datasets": [
+		{
+			"key": "users",
+			"title": "Users",
+			"description": "Full user profiles with address, roles, and purchase history",
+			"category": "user",
+			"tags": ["user", "person", "people", "profile", "account", "customer"],
+			"featured": true,
+			"source": { "type": "module" }
+		},
+		{
+			"key": "userMe",
+			"title": "Current User",
+			"description": "Authenticated user session with profile and preferences",
+			"category": "user",
+			"tags": ["user", "me", "session", "auth", "profile", "current"],
+			"isNew": true,
+			"source": { "type": "module" }
+		},
+		{
+			"key": "githubUser",
+			"title": "GitHub User",
+			"description": "GitHub API user profile response shape",
+			"category": "user",
+			"tags": ["github", "git", "developer", "profile", "api"],
+			"featured": true,
+			"source": { "type": "module" }
+		},
+		{
+			"key": "githubUserProfile",
+			"title": "GitHub User Profile (JSON)",
+			"description": "Real GitHub user API response loaded from JSON",
+			"category": "user",
+			"tags": ["github", "git", "developer", "profile", "api", "json"],
+			"isNew": true,
+			"source": { "type": "json", "file": "github.user.json" }
+		},
+		{
+			"key": "githubRepo",
+			"title": "GitHub Repository (JSON)",
+			"description": "GitHub repository API response loaded from JSON",
+			"category": "user",
+			"tags": ["github", "git", "repository", "repo", "api", "json"],
+			"isNew": true,
+			"source": { "type": "json", "file": "repo.json" }
+		},
+		{
+			"key": "todos",
+			"title": "Todos",
+			"description": "Simple todo items with completion status",
+			"category": "user",
+			"tags": ["todo", "task", "checklist", "list"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "photosFull",
+			"title": "Photos (Full)",
+			"description": "Unsplash-style photo object with full metadata",
+			"category": "media",
+			"tags": ["photo", "image", "unsplash", "gallery", "picture", "full"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "photosShort",
+			"title": "Photos (Short)",
+			"description": "Trimmed photo object for lightweight use cases",
+			"category": "media",
+			"tags": ["photo", "image", "unsplash", "gallery", "picture", "short"],
+			"featured": true,
+			"source": { "type": "module" }
+		},
+		{
+			"key": "videoPlayer",
+			"title": "Video Player",
+			"description": "Video player UI state and controls",
+			"category": "media",
+			"tags": ["video", "player", "media", "movie", "stream"],
+			"featured": true,
+			"source": { "type": "module" }
+		},
+		{
+			"key": "audioPlayer",
+			"title": "Audio Player",
+			"description": "Audio player UI state with track info",
+			"category": "media",
+			"tags": ["audio", "music", "sound", "player", "track"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "radioPlayer",
+			"title": "Radio Player",
+			"description": "Radio stream player state and station info",
+			"category": "media",
+			"tags": ["radio", "stream", "station", "audio", "player"],
+			"isNew": true,
+			"source": { "type": "module" }
+		},
+		{
+			"key": "products",
+			"title": "Products",
+			"description": "Paginated product catalog (DummyJSON-style API response)",
+			"category": "commerce",
+			"tags": ["product", "catalog", "shop", "store", "ecommerce", "items"],
+			"featured": true,
+			"source": { "type": "module" }
+		},
+		{
+			"key": "productCategories",
+			"title": "Product Categories",
+			"description": "E-commerce category list with slugs and URLs",
+			"category": "commerce",
+			"tags": ["category", "categories", "catalog", "shop", "taxonomy"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "cart",
+			"title": "Shopping Cart",
+			"description": "Cart with items, tax, shipping, and totals",
+			"category": "commerce",
+			"tags": ["cart", "basket", "checkout", "order", "shopping"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "countries",
+			"title": "Countries",
+			"description": "Country list with dial codes and flag emojis",
+			"category": "locale",
+			"tags": ["country", "nation", "dial", "phone", "flag", "international"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "languages",
+			"title": "Languages",
+			"description": "ISO language codes for localization",
+			"category": "locale",
+			"tags": ["language", "locale", "i18n", "translation", "iso"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "months",
+			"title": "Months",
+			"description": "Full month names",
+			"category": "locale",
+			"tags": ["month", "calendar", "date", "time"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "monthsShort",
+			"title": "Months (Short)",
+			"description": "Abbreviated month names",
+			"category": "locale",
+			"tags": ["month", "calendar", "date", "abbreviation"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "week",
+			"title": "Weekdays",
+			"description": "Full weekday names",
+			"category": "locale",
+			"tags": ["week", "weekday", "day", "calendar"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "weekShort",
+			"title": "Weekdays (Short)",
+			"description": "Abbreviated weekday names",
+			"category": "locale",
+			"tags": ["week", "weekday", "day", "abbreviation"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "accounts",
+			"title": "Bank Accounts",
+			"description": "Bank account records with balances and transactions",
+			"category": "finance",
+			"tags": ["bank", "account", "finance", "money", "transaction"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "marketing",
+			"title": "Marketing Dashboard",
+			"description": "Campaign analytics and performance metrics",
+			"category": "marketing",
+			"tags": ["marketing", "campaign", "ads", "analytics", "dashboard"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "slideSettings",
+			"title": "Carousel Settings",
+			"description": "Owl Carousel-style slider configuration",
+			"category": "ui",
+			"tags": ["carousel", "slider", "settings", "owl", "slideshow"],
+			"source": { "type": "module" }
+		},
+		{
+			"key": "layout",
+			"title": "Dashboard Layout",
+			"description": "Dashboard layout API response with sections",
+			"category": "ui",
+			"tags": ["layout", "dashboard", "ui", "screen", "sections"],
+			"source": { "type": "module" }
+		}
+	]
+}

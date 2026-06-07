@@ -126,6 +126,11 @@ function ModelBrowser({ selectedKey, onSelect, searchTerm, onSearchChange }: Mod
 													>
 														{CATEGORY_LABELS[item.category]}
 													</span>
+													{item.source.type === 'json' && (
+														<span className='rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-medium text-orange-700 ring-1 ring-orange-200'>
+															JSON
+														</span>
+													)}
 													<span className='font-mono text-[10px] text-gray-400'>{item.key}</span>
 												</div>
 											</div>

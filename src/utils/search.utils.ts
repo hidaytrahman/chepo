@@ -16,8 +16,6 @@ const toTitle = (name: string) =>
 
 export const getMockDataKeys = (): string[] => mockRegistry.map((entry) => entry.key);
 
-export const getMockDataByKey = (key: string): unknown => getRegistryEntry(key)?.data;
-
 export const getDataCatalog = (): DataCatalogItem[] =>
 	mockRegistry.map((entry, idx) => ({
 		id: idx + 1,
@@ -29,6 +27,7 @@ export const getDataCatalog = (): DataCatalogItem[] =>
 		tags: entry.tags,
 		isNew: entry.isNew,
 		featured: entry.featured,
+		source: entry.source,
 	}));
 
 export const getFeaturedDatasets = (): DataCatalogItem[] =>
@@ -69,6 +68,8 @@ const getSearchableText = (entry: (typeof mockRegistry)[number]): string =>
 		entry.description,
 		CATEGORY_LABELS[entry.category],
 		entry.category,
+		entry.source.type,
+		entry.source.type === 'json' ? entry.source.file : '',
 		...entry.tags,
 		...splitTokensFromName(entry.key),
 	]

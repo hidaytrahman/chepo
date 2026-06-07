@@ -13,5 +13,6 @@ export default {
 	coverageReporters: ['text', 'lcov'],
 	moduleNameMapper: {
 		'\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+		'^(.+/data/manifest)\\.json$': '$1.jest.ts',
 	},
 };
