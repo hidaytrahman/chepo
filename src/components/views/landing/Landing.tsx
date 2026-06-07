@@ -16,6 +16,7 @@ export default function Landing() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	const [searchTerm, setSearchTerm] = useState<string>('');
+	const [selectedKey, setSelectedKey] = useState<string>('');
 
 	return (
 		<div className='isolate bg-white'>
@@ -127,8 +128,13 @@ export default function Landing() {
 				</Dialog>
 			</div>
 			<main>
-				<HeaderPanel setSearchTerm={setSearchTerm} />
-				<SearchPanel setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+				<HeaderPanel setSearchTerm={setSearchTerm} setSelectedKey={setSelectedKey} />
+				<SearchPanel
+					setSearchTerm={setSearchTerm}
+					searchTerm={searchTerm}
+					selectedKey={selectedKey}
+					setSelectedKey={setSelectedKey}
+				/>
 			</main>
 		</div>
 	);

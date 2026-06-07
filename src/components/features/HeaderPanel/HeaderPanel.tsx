@@ -1,6 +1,11 @@
-import DataEntity from '../../utils/DataEntity';
+import FeaturedModels from '../../utils/FeaturedModels';
 
-function HeaderPanel({ setSearchTerm }: any) {
+function HeaderPanel({ setSearchTerm, setSelectedKey }: { setSearchTerm: (value: string) => void; setSelectedKey: (value: string) => void }) {
+	const handleSelect = (key: string) => {
+		setSelectedKey(key);
+		setSearchTerm(key);
+	};
+
 	return (
 		<div className='relative px-6 lg:px-3'>
 			<div className='mx-auto max-w-2xl py-20 sm:py-10 lg:py-20'>
@@ -11,6 +16,7 @@ function HeaderPanel({ setSearchTerm }: any) {
 							href='https://www.producthunt.com/products/chepo?utm_source=badge-featured&utm_medium=badge#chepo'
 							className='font-semibold text-indigo-600'
 							target='_blank'
+							rel='noreferrer'
 						>
 							<span className='absolute inset-0' aria-hidden='true' />
 							Read more <span aria-hidden='true'>&rarr;</span>
@@ -22,15 +28,13 @@ function HeaderPanel({ setSearchTerm }: any) {
 						Easiest way to get mock data
 					</h1>
 					<p className='mt-6 text-lg leading-8 text-gray-600'>
-						Chepo is the easiest way to provide mock data and modal for your project. <br />
-						Just copy and paste it into your project. You can use the generated data without any additional
-						effort.
+						Chepo is the easiest way to provide mock data for your project. <br />
+						Search, browse by category, and copy JSON with a single click.
 					</p>
 					<div className='mt-10 flex items-center justify-center gap-x-6'>
-						<div className='my-4 '>
-							<div className='text-gray-400 text-lg pb-6'>Examples</div>
-
-							<DataEntity setColor={setSearchTerm} applyColor={true} />
+						<div className='my-4'>
+							<div className='pb-4 text-lg text-gray-400'>Popular examples</div>
+							<FeaturedModels onSelect={handleSelect} />
 						</div>
 					</div>
 				</div>

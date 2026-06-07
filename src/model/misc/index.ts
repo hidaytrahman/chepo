@@ -1,4 +1,4 @@
-export { videoPlayer, audioPlayer } from './media';
+export { videoPlayer, audioPlayer, radioPlayer } from './media';
 export { slideSettings } from './settings';
 export { languages } from './languages';
 export { months, monthsShort } from './months';
