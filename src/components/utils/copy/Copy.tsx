@@ -12,16 +12,19 @@ import { Copy } from 'phosphor-react';
  */
 export const CopyButton = ({
 	content,
+	text,
 	onClick = () => {},
 	onError,
 }: {
-	content: any;
+	content?: unknown;
+	text?: string;
 	onClick?: () => void;
 	onError?: (err: Error) => void;
 }) => {
 	const copy = () => {
+		const value = text ?? JSON.stringify(content, undefined, 4);
 		navigator.clipboard
-			.writeText(JSON.stringify(content))
+			.writeText(value)
 			.then(onClick)
 			.catch((e) => {
 				if (onError) {

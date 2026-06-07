@@ -52,7 +52,8 @@ function SearchPanel({
 				<div className='mb-2'>
 					<h2 className='text-2xl font-bold tracking-tight text-gray-900'>Browse Mock Data</h2>
 					<p className='mt-1 text-sm text-gray-500'>
-						Search or filter by category, then copy the JSON into your project.
+						Search or filter by category, then copy mock data or schema variants (TypeScript,
+						Zod, PostgreSQL, and more).
 					</p>
 				</div>
 

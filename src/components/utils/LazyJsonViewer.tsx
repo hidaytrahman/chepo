@@ -1,5 +1,5 @@
 import { useMockDataset } from '../../hooks/useMockDataset';
-import JsonViewer from './jsonViewer/JsonViewer';
+import DatasetViewer from './DatasetViewer';
 
 type LazyJsonViewerProps = {
 	datasetKey: string;
@@ -34,7 +34,7 @@ function LazyJsonViewer({ datasetKey, title }: LazyJsonViewerProps) {
 		return null;
 	}
 
-	return <JsonViewer data={data as object} title={title} />;
+	return <DatasetViewer data={data as object} title={title} datasetKey={datasetKey} />;
 }
 
 export default LazyJsonViewer;
