@@ -1,40 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Source+Code+Pro:wght@300&display=swap");
-
-/* font-family: 'Roboto', sans-serif;
-font-family: 'Source Code Pro', monospace;*/
-
 :root {
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
   font-weight: 500;
-  color: #875d5d;
+  color: #4f46e5;
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #875d5d;
+  color: #4338ca;
 }
 
 button {
-  border-radius: 5px;
-  border: 1px solid transparent;
-  padding: 5px;
-  font-size: 1em;
-  font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #875d5d;
-}
-button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 }

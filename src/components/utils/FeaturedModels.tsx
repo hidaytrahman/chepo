@@ -14,7 +14,7 @@ function FeaturedModels({ onSelect }: FeaturedModelsProps) {
 					key={item.key}
 					type='button'
 					onClick={() => onSelect(item.key)}
-					className='rounded-full bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-gray-200 transition hover:bg-indigo-50 hover:text-indigo-700 hover:ring-indigo-200'
+					className='rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700 hover:shadow-md'
 				>
 					{item.title}
 				</button>

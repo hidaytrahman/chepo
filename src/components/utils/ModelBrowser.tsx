@@ -31,8 +31,8 @@ function ModelBrowser({ selectedKey, onSelect, searchTerm, onSearchChange }: Mod
 	}, [searchTerm, activeCategory]);
 
 	return (
-		<div className='rounded-xl border border-gray-200 bg-white shadow-sm'>
-			<div className='border-b border-gray-100 p-4'>
+		<div className='bg-white'>
+			<div className='border-b border-slate-100 p-4 sm:p-5'>
 				<div className='relative'>
 					<MagnifyingGlass
 						className='pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400'
@@ -43,7 +43,7 @@ function ModelBrowser({ selectedKey, onSelect, searchTerm, onSearchChange }: Mod
 						value={searchTerm}
 						onChange={(e) => onSearchChange(e.target.value)}
 						placeholder='Search by name, category, or tag…'
-						className='block w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-10 text-gray-900 placeholder:text-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+						className='block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-10 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 sm:text-sm'
 						aria-label='Search mock datasets'
 					/>
 					{searchTerm && (
@@ -64,8 +64,8 @@ function ModelBrowser({ selectedKey, onSelect, searchTerm, onSearchChange }: Mod
 						onClick={() => setActiveCategory('all')}
 						className={`rounded-full px-3 py-1 text-xs font-medium ring-1 transition-colors ${
 							activeCategory === 'all'
-								? 'bg-gray-900 text-white ring-gray-900'
-								: 'bg-white text-gray-600 ring-gray-200 hover:bg-gray-50'
+								? 'bg-indigo-600 text-white ring-indigo-600'
+								: 'bg-white text-slate-600 ring-slate-200 hover:bg-slate-50'
 						}`}
 					>
 						All ({categories.reduce((sum, c) => sum + c.count, 0)})
@@ -77,8 +77,8 @@ function ModelBrowser({ selectedKey, onSelect, searchTerm, onSearchChange }: Mod
 							onClick={() => setActiveCategory(cat.id)}
 							className={`rounded-full px-3 py-1 text-xs font-medium ring-1 transition-colors ${
 								activeCategory === cat.id
-									? 'bg-gray-900 text-white ring-gray-900'
-									: 'bg-white text-gray-600 ring-gray-200 hover:bg-gray-50'
+									? 'bg-indigo-600 text-white ring-indigo-600'
+									: 'bg-white text-slate-600 ring-slate-200 hover:bg-slate-50'
 							}`}
 						>
 							{cat.label} ({cat.count})
@@ -103,10 +103,10 @@ function ModelBrowser({ selectedKey, onSelect, searchTerm, onSearchChange }: Mod
 										role='option'
 										aria-selected={isSelected}
 										onClick={() => onSelect(item.key)}
-										className={`w-full rounded-lg px-3 py-3 text-left transition-colors ${
+										className={`w-full rounded-xl px-3 py-3 text-left transition-colors ${
 											isSelected
 												? 'bg-indigo-50 ring-1 ring-indigo-200'
-												: 'hover:bg-gray-50'
+												: 'hover:bg-slate-50'
 										}`}
 									>
 										<div className='flex items-start justify-between gap-2'>
