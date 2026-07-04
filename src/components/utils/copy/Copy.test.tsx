@@ -92,7 +92,7 @@ describe('CopyButton', () => {
 		// Wait for the promise inside the copy function to resolve
 		await waitFor(() => {
 			// Assert that the clipboard API was called with the correct stringified content
-			expect(navigator.clipboard.writeText).toHaveBeenCalledWith(JSON.stringify(content));
+			expect(navigator.clipboard.writeText).toHaveBeenCalledWith(JSON.stringify(content, undefined, 4));
 			expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1);
 		});
 	});

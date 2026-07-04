@@ -1,135 +1,92 @@
 import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import { X } from 'phosphor-react';
+import { GithubLogo } from 'phosphor-react';
 import './Landing.css';
 import HeaderPanel from '../../features/HeaderPanel/HeaderPanel';
 import SearchPanel from '../../features/SearchPanel/SearchPanel';
+import { getInitialModelFromUrl } from '../../../hooks/useModelUrl';
 
 const logo = '/chepo/images/logo.png';
 
-const navigation = [
-	{ name: 'Product', href: '#' },
-	{ name: 'Features', href: '#' },
-];
-
 export default function Landing() {
-	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-	const [searchTerm, setSearchTerm] = useState<string>('');
+	const initialModel = getInitialModelFromUrl();
+	const [searchTerm, setSearchTerm] = useState<string>(initialModel);
+	const [selectedKey, setSelectedKey] = useState<string>(initialModel);
 
 	return (
-		<div className='isolate bg-white'>
-			<div className='absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]'>
-				<svg
-					className='relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]'
-					viewBox='0 0 1155 678'
-					xmlns='http://www.w3.org/2000/svg'
+		<div className='landing-page min-h-screen bg-slate-50'>
+			<header className='sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-md'>
+				<nav
+					className='mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8'
+					aria-label='Global'
 				>
-					<path
-						fill='url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)'
-						fillOpacity='.3'
-						d='M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z'
-					/>
-					<defs>
-						<linearGradient
-							id='45de2b6b-92d5-4d68-a6a0-9b9b2abad533'
-							x1='1155.49'
-							x2='-78.208'
-							y1='.177'
-							y2='474.645'
-							gradientUnits='userSpaceOnUse'
-						>
-							<stop stopColor='#9089FC' />
-							<stop offset={1} stopColor='#FF80B5' />
-						</linearGradient>
-					</defs>
-				</svg>
-			</div>
-			<div className='px-6 pt-6 lg:px-8'>
-				<nav className='flex items-center justify-between' aria-label='Global'>
-					<div className='flex lg:flex-1'>
-						<img className='logo' loading='lazy' src={logo} alt='chepo logo' />
-					</div>
-
-					<a
-						href='https://www.producthunt.com/posts/chepo?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-chepo'
-						target='_blank'
-						referrerPolicy='no-referrer'
-					>
-						<img
-							src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=480988&theme=light'
-							alt='Chepo - Get&#0032;generated&#0032;data&#0032;with&#0032;a&#0032;single&#0032;click | Product Hunt'
-							style={{ width: '250px', height: '54px' }}
-							width='250'
-							height='54'
-						/>
+					<a href='/' className='flex items-center gap-3'>
+						<img className='logo' loading='lazy' src={logo} alt='Chepo logo' />
+						<span className='hidden text-sm font-semibold text-slate-800 sm:inline'>Chepo</span>
 					</a>
 
-					{/* <div className='flex lg:hidden'>
-						<button
-							type='button'
-							className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700'
-							onClick={() => setMobileMenuOpen(true)}
+					<div className='flex items-center gap-3 sm:gap-4'>
+						<a
+							href='#browse'
+							className='hidden text-sm font-medium text-slate-600 transition hover:text-indigo-600 sm:inline'
 						>
-							<span className='sr-only'>Open main menu</span>
-							<List className='h-6 w-6' aria-hidden='true' />
-						</button>
-					</div> */}
-					{/* <div className='hidden lg:flex lg:gap-x-12'>
-						{false &&
-							navigation.map((item) => (
-								<a
-									key={item.name}
-									href={item.href}
-									className='text-sm font-semibold leading-6 text-gray-900'
-								>
-									{item.name}
-								</a>
-							))}
-					</div> */}
+							Browse
+						</a>
+						<a
+							href='https://github.com/hidaytrahman/chepo'
+							target='_blank'
+							rel='noreferrer'
+							className='rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800'
+							aria-label='GitHub repository'
+						>
+							<GithubLogo size={22} weight='duotone' />
+						</a>
+						<a
+							href='https://www.producthunt.com/posts/chepo?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-chepo'
+							target='_blank'
+							rel='noreferrer'
+							className='shrink-0'
+						>
+							<img
+								src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=480988&theme=light'
+								alt='Chepo on Product Hunt'
+								className='h-10 w-auto sm:h-[44px]'
+								width='200'
+								height='44'
+							/>
+						</a>
+					</div>
 				</nav>
-				<Dialog as='div' open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-					<Dialog.Panel
-						//   @ts-ignore
-						focus='true'
-						className='fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden'
-					>
-						<div className='flex items-center justify-between'>
-							<a href='#' className='-m-1.5 p-1.5'>
-								<span className='sr-only'>Chepo</span>
-								<img className='logo' loading='lazy' src={logo} alt='chepo logo' />
-							</a>
-							<button
-								type='button'
-								className='-m-2.5 rounded-md p-2.5 text-gray-700'
-								onClick={() => setMobileMenuOpen(false)}
-							>
-								<span className='sr-only'>Close menu</span>
-								<X className='h-6 w-6' aria-hidden='true' />
-							</button>
-						</div>
-						<div className='mt-6 flow-root'>
-							<div className='-my-6 divide-y divide-gray-500/10'>
-								<div className='space-y-2 py-6'>
-									{navigation.map((item) => (
-										<a
-											key={item.name}
-											href={item.href}
-											className='-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10'
-										>
-											{item.name}
-										</a>
-									))}
-								</div>
-							</div>
-						</div>
-					</Dialog.Panel>
-				</Dialog>
-			</div>
+			</header>
+
 			<main>
-				<HeaderPanel setSearchTerm={setSearchTerm} />
-				<SearchPanel setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+				<HeaderPanel setSearchTerm={setSearchTerm} setSelectedKey={setSelectedKey} />
+				<SearchPanel
+					setSearchTerm={setSearchTerm}
+					searchTerm={searchTerm}
+					selectedKey={selectedKey}
+					setSelectedKey={setSelectedKey}
+				/>
 			</main>
+
+			<footer className='border-t border-slate-200 bg-white py-8'>
+				<div className='mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8'>
+					<p className='text-sm text-slate-500'>
+						Chepo — mock data &amp; schema tooling for developers. Copy JSON or export types in
+						seconds.
+					</p>
+					<p className='mt-2 text-xs text-slate-400'>
+						Built by{' '}
+						<a
+							href='https://hidaytrahman.github.io/'
+							target='_blank'
+							rel='noreferrer'
+							className='text-indigo-600 hover:text-indigo-800'
+						>
+							Hidayt Rahman
+						</a>
+					</p>
+				</div>
+			</footer>
 		</div>
 	);
 }

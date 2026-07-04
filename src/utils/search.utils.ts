@@ -1,10 +1,10 @@
-import { modal } from '../model';
+import { mockRegistry, getRegistryEntry } from '../model/registry';
+import { CATEGORY_LABELS, CATEGORY_ORDER, type MockCategory, type MockDatasetMeta } from '../model/types';
 
-type DataCatalogItem = {
+export type DataCatalogItem = MockDatasetMeta & {
 	id: number;
+	/** @deprecated Use `key` instead. Kept for backward compatibility. */
 	name: string;
-	title: string;
-	isNew?: boolean;
 };
 
 const toTitle = (name: string) =>
@@ -14,66 +14,38 @@ const toTitle = (name: string) =>
 		.replace(/-/g, ' ')
 		.replace(/\b\w/g, (c) => c.toUpperCase());
 
-export const getMockDataKeys = (): string[] => Object.keys(modal);
-
-export const getMockDataByKey = (key: string): any => {
-	const k = getMockDataKeys().find((n) => n.toLowerCase() === key.toLowerCase());
-	return k ? (modal as any)[k] : undefined;
-};
+export const getMockDataKeys = (): string[] => mockRegistry.map((entry) => entry.key);
 
 export const getDataCatalog = (): DataCatalogItem[] =>
-	getMockDataKeys().map((name, idx) => ({
+	mockRegistry.map((entry, idx) => ({
 		id: idx + 1,
-		name,
-		title: toTitle(name),
+		key: entry.key,
+		name: entry.key,
+		title: entry.title || toTitle(entry.key),
+		description: entry.description,
+		category: entry.category,
+		tags: entry.tags,
+		isNew: entry.isNew,
+		featured: entry.featured,
+		source: entry.source,
 	}));
 
-export const searchMockData = (query: string): string[] => {
-	const q = query.trim().toLowerCase();
-	if (!q) return [];
-	return getMockDataKeys().filter((name) => name.toLowerCase().includes(q));
-};
+export const getFeaturedDatasets = (): DataCatalogItem[] =>
+	getDataCatalog().filter((item) => item.featured);
 
-export const dataList: DataCatalogItem[] = getDataCatalog();
+export const getDatasetsByCategory = (category: MockCategory): DataCatalogItem[] =>
+	getDataCatalog().filter((item) => item.category === category);
 
-export const highlightColors = ['gray', 'blue', 'red', 'green', 'yellow', 'indigo', 'purple', 'pink', 'magenta'];
-
-const deepIncludes = (value: unknown, q: string): boolean => {
-	if (value == null) return false;
-	const t = typeof value;
-	if (t === 'string') return (value as string).toLowerCase().includes(q);
-	if (t === 'number') return String(value).toLowerCase().includes(q);
-	if (t === 'boolean') return String(value).toLowerCase().includes(q);
-	if (Array.isArray(value)) {
-		for (const v of value) {
-			if (deepIncludes(v, q)) return true;
-		}
-		return false;
+export const getCategories = (): { id: MockCategory; label: string; count: number }[] => {
+	const counts = new Map<MockCategory, number>();
+	for (const entry of mockRegistry) {
+		counts.set(entry.category, (counts.get(entry.category) ?? 0) + 1);
 	}
-	if (t === 'object') {
-		for (const v of Object.values(value as Record<string, unknown>)) {
-			if (deepIncludes(v, q)) return true;
-		}
-		return false;
-	}
-	return false;
-};
-
-export const searchAllMockData = (query: string): string[] => {
-	const q = query.trim().toLowerCase();
-	if (!q) return [];
-	const keys = getMockDataKeys();
-	const byName = searchKeysByQueryTokens(query);
-	const byContent = keys.filter((name) => {
-		const data = getMockDataByKey(name);
-		try {
-			return deepIncludes(data, q);
-		} catch {
-			return false;
-		}
-	});
-	const set = new Set<string>([...byName, ...byContent]);
-	return Array.from(set);
+	return CATEGORY_ORDER.map((id) => ({
+		id,
+		label: CATEGORY_LABELS[id],
+		count: counts.get(id) ?? 0,
+	})).filter((cat) => cat.count > 0);
 };
 
 const normalize = (s: string): string =>
@@ -89,51 +61,39 @@ const splitTokensFromName = (name: string): string[] => {
 	return normalized ? normalized.split(' ') : [];
 };
 
-const aliasMap: Record<string, string[]> = {
-	photos: ['photo', 'image', 'images', 'pic', 'pics', 'picture', 'pictures', 'gallery'],
-	users: ['user', 'person', 'people', 'account', 'profile'],
-	github: ['git', 'gh', 'repo'],
-	products: ['product', 'item', 'items', 'catalog'],
-	categories: ['category', 'group', 'type'],
-	months: ['month'],
-	week: ['weeks', 'weekday', 'weekdays'],
-	countries: ['country', 'nation', 'nationality', 'code', 'dial'],
-	languages: ['language', 'locale'],
-	cart: ['basket', 'checkout'],
-	accounts: ['bank', 'account', 'finance'],
-	marketing: ['campaign', 'ads', 'advertisement'],
-	audio: ['sound', 'music'],
-	video: ['media', 'movie'],
-	layout: ['ui', 'screen', 'page'],
-};
+const getSearchableText = (entry: (typeof mockRegistry)[number]): string =>
+	[
+		entry.key,
+		entry.title,
+		entry.description,
+		CATEGORY_LABELS[entry.category],
+		entry.category,
+		entry.source.type,
+		entry.source.type === 'json' ? entry.source.file : '',
+		...entry.tags,
+		...splitTokensFromName(entry.key),
+	]
+		.join(' ')
+		.toLowerCase();
 
-const expandAliases = (tokens: string[]): string[] => {
-	const out = new Set<string>();
-	for (const t of tokens) {
-		out.add(t);
-		const aliases = aliasMap[t];
-		if (aliases) {
-			for (const a of aliases) out.add(a);
-		}
-	}
-	return Array.from(out);
-};
+const matchQuery = (text: string, queryTokens: string[]): boolean =>
+	queryTokens.every((token) => text.includes(token));
 
-const getKeyTokens = (name: string): string[] => {
-	const base = splitTokensFromName(name);
-	return expandAliases(base);
-};
-
-const matchTokens = (queryTokens: string[], keyTokens: string[]): boolean => {
-	return queryTokens.every((qt) => keyTokens.some((kt) => kt.includes(qt) || qt.includes(kt)));
-};
-
-export const searchKeysByQueryTokens = (query: string): string[] => {
+export const searchCatalog = (query: string): DataCatalogItem[] => {
 	const q = normalize(query);
-	if (!q) return [];
-	const qTokens = q.split(' ');
-	const keys = getMockDataKeys();
-	const matches = keys.filter((name) => matchTokens(qTokens, getKeyTokens(name)));
-	if (matches.length) return matches;
-	return keys.filter((name) => name.toLowerCase().includes(q));
+	if (!q) return getDataCatalog();
+
+	const queryTokens = q.split(' ');
+	return getDataCatalog().filter((item) => {
+		const entry = getRegistryEntry(item.key);
+		if (!entry) return false;
+		return matchQuery(getSearchableText(entry), queryTokens);
+	});
 };
+
+export const searchMockData = (query: string): string[] =>
+	searchCatalog(query).map((item) => item.key);
+
+export const searchKeysByQueryTokens = (query: string): string[] => searchMockData(query);
+
+export const searchAllMockData = (query: string): string[] => searchMockData(query);
