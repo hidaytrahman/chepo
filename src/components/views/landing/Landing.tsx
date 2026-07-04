@@ -5,7 +5,8 @@ import HeaderPanel from '../../features/HeaderPanel/HeaderPanel';
 import SearchPanel from '../../features/SearchPanel/SearchPanel';
 import { getInitialModelFromUrl } from '../../../hooks/useModelUrl';
 
-const logo = '/chepo/images/logo.png';
+const logo = `${import.meta.env.BASE_URL}images/logo.png`;
+const homeHref = import.meta.env.BASE_URL;
 
 export default function Landing() {
 	const initialModel = getInitialModelFromUrl();
@@ -19,7 +20,7 @@ export default function Landing() {
 					className='mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8'
 					aria-label='Global'
 				>
-					<a href='/' className='flex items-center gap-3'>
+					<a href={homeHref} className='flex items-center gap-3'>
 						<img className='logo' loading='lazy' src={logo} alt='Chepo logo' />
 						<span className='hidden text-sm font-semibold text-slate-800 sm:inline'>Chepo</span>
 					</a>
