@@ -1,0 +1,1 @@
+const e=["January","February","March","April","May","June","July","August","September","October","November","December"],r=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];export{e as months,r as monthsShort};

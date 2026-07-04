@@ -1,0 +1,1 @@
+const e={interval:5e3,keyboard:!0,autoplay:!0,autoplaySpeed:1e3,pause:"hover",video:!1,videoHeight:400,ride:!1,wrap:!1,center:!1,mouseDrag:!1,touchDrag:!1,pullDrag:!1,autoWidth:!1,slideTransition:!1,dots:!0,dotsData:!1,lazyLoad:!1};export{e as slideSettings};
